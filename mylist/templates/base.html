@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/base.css'%}" type="text/css">
+        <title>
+            {% block title %}
+                Базовый шаблон
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <header>             
+            <h1 style="size: 24px">Список дел</h1>                   
+            <h3>Version 1.0</h3>
+        </header>
+        <div class="content">
+            {% block content %} 
+                Здесь должна быть информация
+            {% endblock %}
+        </div>
+    </body>
+    <footer>        
+        <div class="f1">
+            <h5>Github: 
+                <a href="https://github.com/RussellMorryson" 
+                style="color: white">
+                Russell Morryson
+                </a>
+            </h5>   
+        </div>
+    </footer>
+</html>

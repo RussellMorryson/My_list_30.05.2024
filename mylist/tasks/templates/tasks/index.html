@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">        
+        <title> Список задач </title>
+    </head>
+    <body>
+        <header>
+            <div class="logo">                
+                <a href="{% url 'index' %}">
+                    Список задач
+                    <h5>List of tasks</h5>
+                </a>
+            </div>
+            <div class="create_b">
+                <form action="{% url 'add' %}">
+                    {% csrf_token %}
+                    <input type="submit"
+                        class="btn"
+                        value="Создать задачу">
+                </form>
+            </div>
+            <div class = "exit">
+                <p>Логин: {{ username }} </p>
+                <form action="{% url 'logout_user' %}">
+                    {% csrf_token %}
+                    <input type="submit" 
+                        class="btn"
+                        value="Выйти">
+                </form>
+            </div>
+        </header>
+        <div class="content">
+            <h2>Список моих задач</h2>
+            <div class="tasks">
+                {% for key, value in tasks.items %}
+                    <h3>{{ value.title }}</h3>
+                    <p>{{ value.description }}</p>
+                    <p>Срок: {{ value.term }}</p>
+                    <p>Тэг: {{ value.tag }}</p>
+                    <p>Статус: {{ value.status }}</p>
+                    <p>Дата создания: {{ value.create_date }}</p>
+                    <div class="buttons">
+                        <div class="edit">
+                            {% csrf_token %}
+                            <a href="{% url 'edit' %}?pk={{ value.pk }}">
+                                <button>
+                                <b>Редактировать</b>
+                                </button>
+                            </a>
+                        </div>
+                    
+                        <div class="delete">
+                            {% csrf_token %}
+                            <a href="{% url 'delete' %}?pk={{ value.pk }}">
+                                <button>
+                                    <b>Удалить</b>
+                                </button>  
+                            </a>
+                        </div>
+                    </div>
+                    <p>================================================</p>
+                {% endfor %}                                     
+                    <br><br><br><br><br>
+            </div>     
+        </div>
+    </body>
+    <footer>
+        <h5>
+            Github:
+            <a href="https://github.com/RussellMorryson" 
+                style="color: white"> 
+                Russell Morryson 
+            </a>
+        </h5>
+    </footer>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'index_base.html' %}
+ 
+{% block title %}
+    Изменение задачи
+{% endblock %}
+
+{% block content %}
+    <h2>Изменение задачи</h2><br>
+    <div class="create">
+        <div class="create_form">            
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p ><button type="submit">Сохранить</button></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

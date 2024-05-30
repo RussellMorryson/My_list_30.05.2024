@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/index_base.css'%}" type="text/css">        
+        <title>
+            {% block title %}
+                Базовый шаблон
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <header>
+            <div class="logo">                
+                <a href="{% url 'index' %}">
+                    Список задач
+                    <h5>List of tasks</h5>
+                </a>
+            </div>
+            <div class = "exit">
+                <p>Логин: {{ username }} </p>
+                <form action="{% url 'logout_user' %}">
+                    {% csrf_token %}
+                    <input type="submit" 
+                        class="btn"
+                        value="Выйти">
+                </form>
+            </div>
+        </header>
+        <div class="content">
+            {% block content %} 
+                Здесь должна быть информация
+            {% endblock %}
+        </div>
+    </body>
+    <footer>
+        <h5>
+            Github:
+            <a href="https://github.com/RussellMorryson" 
+                style="color: white"> 
+                Russell Morryson 
+            </a>
+        </h5>
+    </footer>
+</html>
